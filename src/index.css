@@ -166,4 +166,21 @@
   .text-body {
     @apply text-base sm:text-lg text-muted-foreground leading-relaxed;
   }
+  /* Animated Background */
+  .bg-animated-gradient {
+    background: linear-gradient(-45deg, hsl(206, 60%, 11%), hsl(211, 45%, 15%), hsl(206, 60%, 11%), hsl(190, 30%, 15%));
+    background-size: 400% 400%;
+    animation: gradient-move 20s ease infinite;
+  }
+}
+@keyframes gradient-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

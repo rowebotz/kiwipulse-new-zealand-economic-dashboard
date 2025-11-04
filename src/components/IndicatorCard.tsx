@@ -1,14 +1,14 @@
 import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, ArrowDownRight, Info, TrendingUp } from 'lucide-react';
-import { LineChart, Line, ResponsiveContainer, Tooltip as RechartsTooltip } from 'recharts';
+import { LineChart, Line, ResponsiveContainer, Tooltip as RechartsTooltip, XAxis, YAxis, CartesianGrid } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
 import { EconomicIndicator, HistoricalDataPoint } from '@/lib/types';
 import { useDashboardStore } from '@/store/dashboardStore';
-import { subYears, parseISO } from 'date-fns';
+import { subYears, parseISO, format } from 'date-fns';
 import { DynamicIcon } from './DynamicIcon';
 interface IndicatorCardProps {
   indicator: EconomicIndicator;
@@ -87,15 +87,27 @@ export function IndicatorCard({ indicator, index }: IndicatorCardProps) {
                 <span>{change} vs previous period</span>
               </div>
             </div>
-            <div className="h-20 w-full mt-4">
+            <div className="h-28 w-full mt-4 -ml-4">
               <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={chartData} margin={{ top: 5, right: 10, left: 10, bottom: 0 }}>
-                  <defs>
-                    <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="hsl(190 70% 40%)" stopOpacity={0.8}/>
-                      <stop offset="95%" stopColor="hsl(190 70% 40%)" stopOpacity={0}/>
-                    </linearGradient>
-                  </defs>
+                <LineChart data={chartData} margin={{ top: 5, right: 20, left: 0, bottom: 20 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(211 25% 30%)" />
+                  <XAxis
+                    dataKey="date"
+                    stroke="hsl(0 0% 63.9%)"
+                    fontSize={10}
+                    tickLine={false}
+                    axisLine={false}
+                    tickFormatter={(str) => format(parseISO(str), 'MMM yy')}
+                    interval="preserveStartEnd"
+                  />
+                  <YAxis
+                    stroke="hsl(0 0% 63.9%)"
+                    fontSize={10}
+                    tickLine={false}
+                    axisLine={false}
+                    tickFormatter={(val) => `${val}`}
+                    domain={['dataMin', 'dataMax']}
+                  />
                   <RechartsTooltip
                     contentStyle={{
                       backgroundColor: 'rgba(5, 10, 20, 0.8)',
@@ -105,7 +117,7 @@ export function IndicatorCard({ indicator, index }: IndicatorCardProps) {
                       borderRadius: '0.5rem',
                     }}
                     itemStyle={{ color: '#fff' }}
-                    labelStyle={{ display: 'none' }}
+                    labelFormatter={(label) => format(parseISO(label), 'dd MMM yyyy')}
                   />
                   <Line
                     type="monotone"
@@ -136,7 +148,7 @@ export function IndicatorCardSkeleton() {
           <Skeleton className="h-10 w-1/2 mb-2" />
           <Skeleton className="h-3 w-4/5" />
         </div>
-        <div className="h-20 w-full mt-4">
+        <div className="h-28 w-full mt-4">
           <Skeleton className="h-full w-full" />
         </div>
       </CardContent>

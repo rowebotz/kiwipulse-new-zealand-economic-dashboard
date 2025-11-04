@@ -39,7 +39,7 @@ export function HomePage() {
         </div>
       </main>
       <footer className="text-center py-6 text-sm text-gray-500">
-        <p>Built with ❤️ at Cloudflare for the New Zealand Taxpayers' Union.</p>
+        <p>Powered by the New Zealand Taxpayers' Union.</p>
       </footer>
     </div>
   );

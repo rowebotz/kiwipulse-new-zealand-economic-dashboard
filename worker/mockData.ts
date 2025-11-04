@@ -20,6 +20,7 @@ export const mockIndicators: EconomicIndicator[] = [
     description: 'The Official Cash Rate (OCR) is the interest rate set by the Reserve Bank of New Zealand to meet its inflation targets.',
     source: 'Reserve Bank of New Zealand (RBNZ)',
     sourceUrl: 'https://www.rbnz.govt.nz/statistics/key-graphs/key-graph-official-cash-rate',
+    icon: 'Banknote',
     historicalData: generateHistoricalData(5.5, 60, 0.05),
   },
   {
@@ -31,6 +32,7 @@ export const mockIndicators: EconomicIndicator[] = [
     description: 'Gross Domestic Product (GDP) measures the total value of goods and services produced in New Zealand.',
     source: 'Stats NZ',
     sourceUrl: 'https://www.stats.govt.nz/indicators/gross-domestic-product-gdp/',
+    icon: 'TrendingUp',
     historicalData: generateHistoricalData(0.2, 60, 0.3),
   },
   {
@@ -42,6 +44,7 @@ export const mockIndicators: EconomicIndicator[] = [
     description: 'The Consumer Price Index (CPI) measures the average change in prices for a basket of consumer goods and services.',
     source: 'Stats NZ',
     sourceUrl: 'https://www.stats.govt.nz/indicators/consumers-price-index-cpi/',
+    icon: 'ShoppingCart',
     historicalData: generateHistoricalData(4.5, 60, 0.4),
   },
   {
@@ -53,6 +56,7 @@ export const mockIndicators: EconomicIndicator[] = [
     description: 'The percentage of the total labor force that is jobless and actively seeking employment.',
     source: 'Stats NZ',
     sourceUrl: 'https://www.stats.govt.nz/indicators/unemployment-rate/',
+    icon: 'UserMinus',
     historicalData: generateHistoricalData(4.0, 60, 0.2),
   },
   {
@@ -64,6 +68,7 @@ export const mockIndicators: EconomicIndicator[] = [
     description: 'The current account balance measures the flow of goods, services, and investments into and out of the country.',
     source: 'Stats NZ',
     sourceUrl: 'https://www.stats.govt.nz/indicators/balance-of-payments-and-international-investment-position/',
+    icon: 'Landmark',
     historicalData: generateHistoricalData(-30, 60, 1.5),
   },
   {
@@ -75,6 +80,7 @@ export const mockIndicators: EconomicIndicator[] = [
     description: 'The percentage of the working-age population that is either employed or actively looking for work.',
     source: 'Stats NZ',
     sourceUrl: 'https://www.stats.govt.nz/indicators/labour-force-participation-rate/',
+    icon: 'Users',
     historicalData: generateHistoricalData(72, 60, 0.3),
   },
   {
@@ -86,6 +92,7 @@ export const mockIndicators: EconomicIndicator[] = [
     description: 'The ratio of gross government debt to the country\'s Gross Domestic Product (GDP).',
     source: 'The Treasury',
     sourceUrl: 'https://www.treasury.govt.nz/publications/data/government-debt-data',
+    icon: 'Shield',
     historicalData: generateHistoricalData(42, 60, 0.8),
   },
   {
@@ -97,6 +104,7 @@ export const mockIndicators: EconomicIndicator[] = [
     description: 'The value of the New Zealand Dollar compared to the United States Dollar.',
     source: 'Reserve Bank of New Zealand (RBNZ)',
     sourceUrl: 'https://www.rbnz.govt.nz/statistics/key-graphs/key-graph-exchange-rates',
+    icon: 'DollarSign',
     historicalData: generateHistoricalData(0.61, 60, 0.005),
   },
 ];

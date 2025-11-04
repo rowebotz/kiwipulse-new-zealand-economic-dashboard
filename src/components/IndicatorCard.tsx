@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, ArrowDownRight, Info, TrendingUp } from 'lucide-react';
 import { LineChart, Line, ResponsiveContainer, Tooltip as RechartsTooltip } from 'recharts';
@@ -6,7 +6,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
-import { EconomicIndicator } from '@/lib/types';
+import { EconomicIndicator, HistoricalDataPoint } from '@/lib/types';
+import { useDashboardStore } from '@/store/dashboardStore';
+import { subYears, parseISO } from 'date-fns';
 interface IndicatorCardProps {
   indicator: EconomicIndicator;
   index: number;
@@ -21,8 +23,23 @@ const changeTypeIcons = {
   negative: <ArrowDownRight className="h-4 w-4" />,
   neutral: <TrendingUp className="h-4 w-4" />,
 };
+const filterDataByTimeRange = (data: HistoricalDataPoint[], range: string): HistoricalDataPoint[] => {
+  if (range === 'All') return data;
+  const now = new Date();
+  let startDate: Date;
+  if (range === '1Y') {
+    startDate = subYears(now, 1);
+  } else if (range === '5Y') {
+    startDate = subYears(now, 5);
+  } else {
+    return data;
+  }
+  return data.filter(point => parseISO(point.date) >= startDate);
+};
 export function IndicatorCard({ indicator, index }: IndicatorCardProps) {
   const { title, value, change, changeType, description, source, historicalData } = indicator;
+  const timeRange = useDashboardStore((state) => state.timeRange);
+  const chartData = useMemo(() => filterDataByTimeRange(historicalData, timeRange), [historicalData, timeRange]);
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -56,7 +73,7 @@ export function IndicatorCard({ indicator, index }: IndicatorCardProps) {
           </div>
           <div className="h-20 w-full mt-4">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={historicalData} margin={{ top: 5, right: 10, left: 10, bottom: 0 }}>
+              <LineChart data={chartData} margin={{ top: 5, right: 10, left: 10, bottom: 0 }}>
                 <defs>
                   <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor="hsl(190 70% 40%)" stopOpacity={0.8}/>

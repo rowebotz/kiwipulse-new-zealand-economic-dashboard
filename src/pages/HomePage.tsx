@@ -13,7 +13,8 @@ export function HomePage() {
     // Set dark theme on mount
     document.documentElement.classList.add('dark');
     fetchIndicators();
-  }, [fetchIndicators]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // fetchIndicators is stable from Zustand, so we only need to run this once.
   return (
     <div className="bg-dashboard-background min-h-screen text-white">
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

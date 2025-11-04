@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { EconomicIndicator } from '@/lib/types';
+import { mockIndicators } from '@/lib/mockData';
 interface DashboardState {
   indicators: EconomicIndicator[];
   timeRange: string;
@@ -16,20 +17,12 @@ export const useDashboardStore = create<DashboardState>((set) => ({
   fetchIndicators: async () => {
     set({ loading: true, error: null });
     try {
-      const response = await fetch('/api/indicators');
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const result = await response.json();
-      if (result.success) {
-        set({ indicators: result.data, loading: false });
-      } else {
-        throw new Error(result.error || 'Failed to fetch indicators');
-      }
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      set({ indicators: mockIndicators, loading: false });
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
-      console.error("Failed to fetch indicators:", errorMessage);
-      set({ error: `Failed to load data from the server. ${errorMessage}`, loading: false });
+      set({ error: errorMessage, loading: false });
     }
   },
   setTimeRange: (range: string) => set({ timeRange: range }),

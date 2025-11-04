@@ -91,6 +91,9 @@ export default {
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		colors: {
+        'dashboard-background': 'hsl(206 60% 11%)',
+        'dashboard-card': 'hsl(211 25% 18%)', // Slightly lighter than pure slate for better contrast
+        'dashboard-accent': 'hsl(190 70% 40%)',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			muted: {

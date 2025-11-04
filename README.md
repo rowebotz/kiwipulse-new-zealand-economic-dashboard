@@ -1,6 +1,6 @@
 # KiwiPulse: New Zealand Economic Dashboard
 
-[cloudflarebutton]
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/rowebotz/kiwipulse-new-zealand-economic-dashboard)
 
 KiwiPulse is a sophisticated, visually stunning, and responsive web-based economic dashboard designed for the New Zealand Taxpayers' Union. It presents eight key macroeconomic indicators in a clean, modern, and highly interactive interface. Each indicator is displayed in its own dedicated card, featuring the latest data point, a change indicator (up/down), and a historical trend visualized as a compact sparkline chart. The dashboard is built for clarity and accessibility, allowing citizens, policymakers, and stakeholders to understand New Zealand's economic performance at a glance. Interactive elements like tooltips provide deeper context, including data sources and descriptions for each metric. The entire application is designed with a mobile-first approach, ensuring a seamless experience across all devices, from large desktops to smartphones.
 
@@ -92,7 +92,7 @@ This project is optimized for deployment on the Cloudflare network.
 
 You can also deploy this project directly to Cloudflare with a single click.
 
-[cloudflarebutton]
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/rowebotz/kiwipulse-new-zealand-economic-dashboard)
 
 ## Project Structure
 

@@ -37,7 +37,7 @@ const filterDataByTimeRange = (data: HistoricalDataPoint[], range: string): Hist
   return data.filter(point => parseISO(point.date) >= startDate);
 };
 export function IndicatorCard({ indicator, index }: IndicatorCardProps) {
-  const { title, value, change, changeType, description, source, historicalData } = indicator;
+  const { title, value, change, changeType, description, source, sourceUrl, historicalData } = indicator;
   const timeRange = useDashboardStore((state) => state.timeRange);
   const chartData = useMemo(() => filterDataByTimeRange(historicalData, timeRange), [historicalData, timeRange]);
   return (
@@ -58,7 +58,17 @@ export function IndicatorCard({ indicator, index }: IndicatorCardProps) {
               </TooltipTrigger>
               <TooltipContent className="max-w-xs bg-slate-800 text-white border-slate-700">
                 <p className="font-bold">{description}</p>
-                <p className="text-xs text-gray-400 mt-2">Source: {source}</p>
+                <p className="text-xs text-gray-400 mt-2">
+                  Source:{" "}
+                  <a
+                    href={sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline hover:text-dashboard-accent transition-colors"
+                  >
+                    {source}
+                  </a>
+                </p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>

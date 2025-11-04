@@ -11,5 +11,6 @@ export interface EconomicIndicator {
   changeType: ChangeType;
   description: string;
   source: string;
+  sourceUrl: string;
   historicalData: HistoricalDataPoint[];
 }
